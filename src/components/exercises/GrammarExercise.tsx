@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { BookOpen, CheckCircle, XCircle } from 'lucide-react'
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { BookOpen, CheckCircle, XCircle } from "lucide-react";
 
 interface Props {
-  ruleTitle: string
-  ruleVi: string
-  example: { cs: string; vi: string }
-  question: string
-  options: Array<{ id: string; text: string }>
-  correctId: string
-  explanation: string
-  onAnswer: (correct: boolean) => void
+  ruleTitle: string;
+  ruleVi: string;
+  example: { cs: string; vi: string };
+  question: string;
+  options: Array<{ id: string; text: string }>;
+  correctId: string;
+  explanation: string;
+  onAnswer: (correct: boolean) => void;
 }
 
 export default function GrammarExercise({
@@ -23,14 +23,14 @@ export default function GrammarExercise({
   explanation,
   onAnswer,
 }: Props) {
-  const [selected, setSelected] = useState<string | null>(null)
-  const [showRule, setShowRule] = useState(true)
-  const correct = selected === correctId
+  const [selected, setSelected] = useState<string | null>(null);
+  const [showRule, setShowRule] = useState(true);
+  const correct = selected === correctId;
 
   function handleSelect(id: string) {
-    if (selected) return
-    setSelected(id)
-    setTimeout(() => onAnswer(id === correctId), 1200)
+    if (selected) return;
+    setSelected(id);
+    setTimeout(() => onAnswer(id === correctId), 1200);
   }
 
   return (
@@ -47,7 +47,9 @@ export default function GrammarExercise({
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <BookOpen size={16} className="text-amber-600" />
-                <span className="text-xs font-bold text-amber-700 uppercase tracking-wide">Ngữ pháp</span>
+                <span className="text-xs font-bold text-amber-700 uppercase tracking-wide">
+                  Ngữ pháp
+                </span>
               </div>
               <button
                 onClick={() => setShowRule(false)}
@@ -57,9 +59,13 @@ export default function GrammarExercise({
               </button>
             </div>
             <p className="font-bold text-gray-800 text-sm mb-1">{ruleTitle}</p>
-            <p className="text-gray-600 text-xs leading-relaxed whitespace-pre-line">{ruleVi}</p>
+            <p className="text-gray-600 text-xs leading-relaxed whitespace-pre-line">
+              {ruleVi}
+            </p>
             <div className="mt-3 bg-white rounded-xl p-3 border border-amber-100">
-              <p className="text-xs text-amber-600 font-semibold mb-1">Ví dụ:</p>
+              <p className="text-xs text-amber-600 font-semibold mb-1">
+                Ví dụ:
+              </p>
               <p className="font-bold text-gray-800 text-sm">{example.cs}</p>
               <p className="text-gray-500 text-xs mt-1">{example.vi}</p>
             </div>
@@ -78,18 +84,22 @@ export default function GrammarExercise({
 
       {/* Question */}
       <div className="bg-white rounded-3xl shadow border border-gray-100 p-5">
-        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Câu hỏi</p>
+        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
+          Câu hỏi
+        </p>
         <p className="text-xl font-bold text-gray-800">{question}</p>
       </div>
 
       {/* Options */}
       <div className="grid grid-cols-1 gap-3">
         {options.map((opt) => {
-          let style = 'bg-white border-2 border-gray-200 text-gray-800'
+          let style = "bg-white border-2 border-gray-200 text-gray-800";
           if (selected) {
-            if (opt.id === correctId) style = 'bg-brand-green border-2 border-brand-green text-white'
-            else if (opt.id === selected) style = 'bg-brand-red border-2 border-brand-red text-white'
-            else style = 'bg-gray-50 border-2 border-gray-100 text-gray-400'
+            if (opt.id === correctId)
+              style = "bg-brand-orange border-2 border-brand-orange text-white";
+            else if (opt.id === selected)
+              style = "bg-brand-red border-2 border-brand-red text-white";
+            else style = "bg-gray-50 border-2 border-gray-100 text-gray-400";
           }
           return (
             <motion.button
@@ -100,7 +110,7 @@ export default function GrammarExercise({
             >
               {opt.text}
             </motion.button>
-          )
+          );
         })}
       </div>
 
@@ -109,15 +119,22 @@ export default function GrammarExercise({
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`rounded-2xl p-4 flex gap-3 ${correct ? 'bg-green-50 border border-brand-green/30' : 'bg-red-50 border border-brand-red/30'}`}
+          className={`rounded-2xl p-4 flex gap-3 ${correct ? "bg-green-50 border border-brand-green/30" : "bg-red-50 border border-brand-red/30"}`}
         >
-          {correct
-            ? <CheckCircle size={20} className="text-brand-green flex-shrink-0 mt-0.5" />
-            : <XCircle size={20} className="text-brand-red flex-shrink-0 mt-0.5" />
-          }
+          {correct ? (
+            <CheckCircle
+              size={20}
+              className="text-brand-orange flex-shrink-0 mt-0.5"
+            />
+          ) : (
+            <XCircle
+              size={20}
+              className="text-brand-red flex-shrink-0 mt-0.5"
+            />
+          )}
           <p className="text-sm text-gray-700">{explanation}</p>
         </motion.div>
       )}
     </div>
-  )
+  );
 }
