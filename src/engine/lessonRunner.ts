@@ -95,6 +95,22 @@ export function buildExercises(lesson: Lesson): Exercise[] {
       }
     }
 
+    if (def.type === 'grammar' && def.data) {
+      exercises.push({ type: 'grammar', ...def.data })
+    }
+
+    if (def.type === 'reading' && def.data) {
+      exercises.push({ type: 'reading', ...def.data })
+    }
+
+    if (def.type === 'writing' && def.data) {
+      exercises.push({ type: 'writing', ...def.data })
+    }
+
+    if (def.type === 'video' && def.data) {
+      exercises.push({ type: 'video', ...def.data })
+    }
+
     if (def.type === 'fillBlank') {
       // Simple fill-blank from vocab: "Tiếng Séc của '___ chào' là ___"
       const fillPairs: Array<{ czech: string; answer: string; wordBank: string[] }> = []

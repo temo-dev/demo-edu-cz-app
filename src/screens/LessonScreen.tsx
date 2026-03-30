@@ -13,6 +13,10 @@ import MatchingPairs from '../components/exercises/MatchingPairs'
 import FillInTheBlank from '../components/exercises/FillInTheBlank'
 import ListeningExercise from '../components/exercises/ListeningExercise'
 import SpeakingExercise from '../components/exercises/SpeakingExercise'
+import GrammarExercise from '../components/exercises/GrammarExercise'
+import ReadingExercise from '../components/exercises/ReadingExercise'
+import WritingExercise from '../components/exercises/WritingExercise'
+import VideoExercise from '../components/exercises/VideoExercise'
 
 interface Props {
   lessonId: string
@@ -140,6 +144,49 @@ export default function LessonScreen({ lessonId }: Props) {
                 prompt={currentExercise.prompt}
                 answer={currentExercise.answer}
                 pronunciation={currentExercise.pronunciation}
+                onAnswer={submitAnswer}
+              />
+            )}
+
+            {currentExercise?.type === 'grammar' && (
+              <GrammarExercise
+                ruleTitle={currentExercise.ruleTitle}
+                ruleVi={currentExercise.ruleVi}
+                example={currentExercise.example}
+                question={currentExercise.question}
+                options={currentExercise.options}
+                correctId={currentExercise.correctId}
+                explanation={currentExercise.explanation}
+                onAnswer={submitAnswer}
+              />
+            )}
+
+            {currentExercise?.type === 'reading' && (
+              <ReadingExercise
+                passageCs={currentExercise.passageCs}
+                passageVi={currentExercise.passageVi}
+                questions={currentExercise.questions}
+                onAnswer={submitAnswer}
+              />
+            )}
+
+            {currentExercise?.type === 'writing' && (
+              <WritingExercise
+                promptVi={currentExercise.promptVi}
+                answer={currentExercise.answer}
+                hint={currentExercise.hint}
+                onAnswer={submitAnswer}
+              />
+            )}
+
+            {currentExercise?.type === 'video' && (
+              <VideoExercise
+                youtubeId={currentExercise.youtubeId}
+                title={currentExercise.title}
+                level={currentExercise.level}
+                question={currentExercise.question}
+                options={currentExercise.options}
+                correctId={currentExercise.correctId}
                 onAnswer={submitAnswer}
               />
             )}

@@ -106,6 +106,112 @@ export const vocabulary: VocabItem[] = [
     tags: ['introduction', 'courtesy', 'unit1'],
   },
 
+  // ========== A1: Màu Sắc (cs_201-cs_208) ==========
+  { id: 'cs_201', czech: 'červená', vietnamese: 'màu đỏ', pronunciation: 'CHER-ve-na', partOfSpeech: 'adjective', tags: ['colors', 'A1', 'unit3'] },
+  { id: 'cs_202', czech: 'modrá', vietnamese: 'màu xanh dương', pronunciation: 'MOD-ra', partOfSpeech: 'adjective', tags: ['colors', 'A1', 'unit3'] },
+  { id: 'cs_203', czech: 'zelená', vietnamese: 'màu xanh lá', pronunciation: 'ZE-le-na', partOfSpeech: 'adjective', tags: ['colors', 'A1', 'unit3'] },
+  { id: 'cs_204', czech: 'žlutá', vietnamese: 'màu vàng', pronunciation: 'ZHLU-ta', partOfSpeech: 'adjective', tags: ['colors', 'A1', 'unit3'] },
+  { id: 'cs_205', czech: 'bílá', vietnamese: 'màu trắng', pronunciation: 'BEE-la', partOfSpeech: 'adjective', tags: ['colors', 'A1', 'unit3'] },
+  { id: 'cs_206', czech: 'černá', vietnamese: 'màu đen', pronunciation: 'CHER-na', partOfSpeech: 'adjective', tags: ['colors', 'A1', 'unit3'] },
+  { id: 'cs_207', czech: 'oranžová', vietnamese: 'màu cam', pronunciation: 'o-RAN-zho-va', partOfSpeech: 'adjective', tags: ['colors', 'A1', 'unit3'] },
+  { id: 'cs_208', czech: 'růžová', vietnamese: 'màu hồng', pronunciation: 'ROO-zho-va', partOfSpeech: 'adjective', tags: ['colors', 'A1', 'unit3'] },
+
+  // ========== A1: Gia Đình (cs_301-cs_312) ==========
+  { id: 'cs_301', czech: 'matka', vietnamese: 'mẹ', pronunciation: 'MAT-ka', partOfSpeech: 'noun', gender: 'feminine', tags: ['family', 'A1', 'unit4'] },
+  { id: 'cs_302', czech: 'otec', vietnamese: 'bố', pronunciation: 'O-tets', partOfSpeech: 'noun', gender: 'masculine', tags: ['family', 'A1', 'unit4'] },
+  { id: 'cs_303', czech: 'sestra', vietnamese: 'chị/em gái', pronunciation: 'SES-tra', partOfSpeech: 'noun', gender: 'feminine', tags: ['family', 'A1', 'unit4'] },
+  { id: 'cs_304', czech: 'bratr', vietnamese: 'anh/em trai', pronunciation: 'BRA-tr', partOfSpeech: 'noun', gender: 'masculine', tags: ['family', 'A1', 'unit4'] },
+  { id: 'cs_305', czech: 'babička', vietnamese: 'bà', pronunciation: 'BA-bich-ka', partOfSpeech: 'noun', gender: 'feminine', tags: ['family', 'A1', 'unit4'] },
+  { id: 'cs_306', czech: 'dědeček', vietnamese: 'ông', pronunciation: 'DYE-de-chek', partOfSpeech: 'noun', gender: 'masculine', tags: ['family', 'A1', 'unit4'] },
+  { id: 'cs_307', czech: 'dítě', vietnamese: 'đứa trẻ', pronunciation: 'DEE-tye', partOfSpeech: 'noun', gender: 'neuter', tags: ['family', 'A1', 'unit4'] },
+  { id: 'cs_308', czech: 'manžel', vietnamese: 'chồng', pronunciation: 'MAN-zhel', partOfSpeech: 'noun', gender: 'masculine', tags: ['family', 'A1', 'unit4'] },
+  { id: 'cs_309', czech: 'manželka', vietnamese: 'vợ', pronunciation: 'MAN-zhel-ka', partOfSpeech: 'noun', gender: 'feminine', tags: ['family', 'A1', 'unit4'] },
+  { id: 'cs_310', czech: 'přítel', vietnamese: 'bạn trai', pronunciation: 'PRZHI-tel', partOfSpeech: 'noun', gender: 'masculine', tags: ['family', 'A1', 'unit4'] },
+
+  // ========== A1: Đồ Ăn (cs_401-cs_412) ==========
+  { id: 'cs_401', czech: 'chléb', vietnamese: 'bánh mì', pronunciation: 'khleb', partOfSpeech: 'noun', gender: 'masculine', tags: ['food', 'A1', 'unit5'] },
+  { id: 'cs_402', czech: 'mléko', vietnamese: 'sữa', pronunciation: 'MLE-ko', partOfSpeech: 'noun', gender: 'neuter', tags: ['food', 'A1', 'unit5'] },
+  { id: 'cs_403', czech: 'voda', vietnamese: 'nước', pronunciation: 'VO-da', partOfSpeech: 'noun', gender: 'feminine', tags: ['food', 'A1', 'unit5'] },
+  { id: 'cs_404', czech: 'káva', vietnamese: 'cà phê', pronunciation: 'KA-va', partOfSpeech: 'noun', gender: 'feminine', tags: ['food', 'A1', 'unit5'] },
+  { id: 'cs_405', czech: 'čaj', vietnamese: 'trà', pronunciation: 'chai', partOfSpeech: 'noun', gender: 'masculine', tags: ['food', 'A1', 'unit5'] },
+  { id: 'cs_406', czech: 'pivo', vietnamese: 'bia', pronunciation: 'PI-vo', partOfSpeech: 'noun', gender: 'neuter', tags: ['food', 'A1', 'unit5'] },
+  { id: 'cs_407', czech: 'maso', vietnamese: 'thịt', pronunciation: 'MA-so', partOfSpeech: 'noun', gender: 'neuter', tags: ['food', 'A1', 'unit5'] },
+  { id: 'cs_408', czech: 'zelenina', vietnamese: 'rau củ', pronunciation: 'ze-LE-ni-na', partOfSpeech: 'noun', gender: 'feminine', tags: ['food', 'A1', 'unit5'] },
+  { id: 'cs_409', czech: 'ovoce', vietnamese: 'trái cây', pronunciation: 'O-vo-tse', partOfSpeech: 'noun', gender: 'neuter', tags: ['food', 'A1', 'unit5'] },
+  { id: 'cs_410', czech: 'polévka', vietnamese: 'súp', pronunciation: 'PO-lev-ka', partOfSpeech: 'noun', gender: 'feminine', tags: ['food', 'A1', 'unit5'] },
+
+  // ========== A1: Thời Gian (cs_501-cs_510) ==========
+  { id: 'cs_501', czech: 'dnes', vietnamese: 'hôm nay', pronunciation: 'dnes', partOfSpeech: 'adverb', tags: ['time', 'A1', 'unit6'] },
+  { id: 'cs_502', czech: 'zítra', vietnamese: 'ngày mai', pronunciation: 'ZEE-tra', partOfSpeech: 'adverb', tags: ['time', 'A1', 'unit6'] },
+  { id: 'cs_503', czech: 'včera', vietnamese: 'hôm qua', pronunciation: 'FCHE-ra', partOfSpeech: 'adverb', tags: ['time', 'A1', 'unit6'] },
+  { id: 'cs_504', czech: 'ráno', vietnamese: 'buổi sáng', pronunciation: 'RA-no', partOfSpeech: 'adverb', tags: ['time', 'A1', 'unit6'] },
+  { id: 'cs_505', czech: 'večer', vietnamese: 'buổi tối', pronunciation: 'VE-cher', partOfSpeech: 'adverb', tags: ['time', 'A1', 'unit6'] },
+  { id: 'cs_506', czech: 'týden', vietnamese: 'tuần', pronunciation: 'TEE-den', partOfSpeech: 'noun', gender: 'masculine', tags: ['time', 'A1', 'unit6'] },
+  { id: 'cs_507', czech: 'měsíc', vietnamese: 'tháng', pronunciation: 'MNYE-seets', partOfSpeech: 'noun', gender: 'masculine', tags: ['time', 'A1', 'unit6'] },
+  { id: 'cs_508', czech: 'rok', vietnamese: 'năm', pronunciation: 'rok', partOfSpeech: 'noun', gender: 'masculine', tags: ['time', 'A1', 'unit6'] },
+  { id: 'cs_509', czech: 'hodina', vietnamese: 'giờ / tiếng', pronunciation: 'HO-di-na', partOfSpeech: 'noun', gender: 'feminine', tags: ['time', 'A1', 'unit6'] },
+  { id: 'cs_510', czech: 'minuta', vietnamese: 'phút', pronunciation: 'MI-nu-ta', partOfSpeech: 'noun', gender: 'feminine', tags: ['time', 'A1', 'unit6'] },
+
+  // ========== A2: Mua Sắm (cs_601-cs_610) ==========
+  { id: 'cs_601', czech: 'obchod', vietnamese: 'cửa hàng', pronunciation: 'OB-khod', partOfSpeech: 'noun', gender: 'masculine', tags: ['shopping', 'A2', 'unit7'] },
+  { id: 'cs_602', czech: 'cena', vietnamese: 'giá cả', pronunciation: 'TSE-na', partOfSpeech: 'noun', gender: 'feminine', tags: ['shopping', 'A2', 'unit7'] },
+  { id: 'cs_603', czech: 'kolik to stojí?', vietnamese: 'cái này giá bao nhiêu?', pronunciation: 'KO-lik to STO-yee', partOfSpeech: 'phrase', tags: ['shopping', 'A2', 'unit7'] },
+  { id: 'cs_604', czech: 'levný', vietnamese: 'rẻ', pronunciation: 'LEV-nee', partOfSpeech: 'adjective', tags: ['shopping', 'A2', 'unit7'] },
+  { id: 'cs_605', czech: 'drahý', vietnamese: 'đắt', pronunciation: 'DRA-hee', partOfSpeech: 'adjective', tags: ['shopping', 'A2', 'unit7'] },
+  { id: 'cs_606', czech: 'platit', vietnamese: 'thanh toán', pronunciation: 'PLA-tit', partOfSpeech: 'verb', tags: ['shopping', 'A2', 'unit7'] },
+  { id: 'cs_607', czech: 'účet', vietnamese: 'hóa đơn', pronunciation: 'OO-chet', partOfSpeech: 'noun', gender: 'masculine', tags: ['shopping', 'A2', 'unit7'] },
+  { id: 'cs_608', czech: 'supermarket', vietnamese: 'siêu thị', pronunciation: 'su-per-MAR-ket', partOfSpeech: 'noun', gender: 'masculine', tags: ['shopping', 'A2', 'unit7'] },
+  { id: 'cs_609', czech: 'sleva', vietnamese: 'giảm giá', pronunciation: 'SLE-va', partOfSpeech: 'noun', gender: 'feminine', tags: ['shopping', 'A2', 'unit7'] },
+  { id: 'cs_610', czech: 'koruna', vietnamese: 'koruna (tiền Séc)', pronunciation: 'KO-ru-na', partOfSpeech: 'noun', gender: 'feminine', tags: ['shopping', 'A2', 'unit7'] },
+
+  // ========== A2: Bệnh Viện (cs_701-cs_710) ==========
+  { id: 'cs_701', czech: 'nemocnice', vietnamese: 'bệnh viện', pronunciation: 'ne-MOC-ni-tse', partOfSpeech: 'noun', gender: 'feminine', tags: ['health', 'A2', 'unit8'] },
+  { id: 'cs_702', czech: 'doktor', vietnamese: 'bác sĩ', pronunciation: 'DOK-tor', partOfSpeech: 'noun', gender: 'masculine', tags: ['health', 'A2', 'unit8'] },
+  { id: 'cs_703', czech: 'bolí mě', vietnamese: 'tôi bị đau', pronunciation: 'BO-lee mnye', partOfSpeech: 'phrase', tags: ['health', 'A2', 'unit8'] },
+  { id: 'cs_704', czech: 'lék', vietnamese: 'thuốc', pronunciation: 'lek', partOfSpeech: 'noun', gender: 'masculine', tags: ['health', 'A2', 'unit8'] },
+  { id: 'cs_705', czech: 'horečka', vietnamese: 'sốt', pronunciation: 'HO-rech-ka', partOfSpeech: 'noun', gender: 'feminine', tags: ['health', 'A2', 'unit8'] },
+  { id: 'cs_706', czech: 'alergický', vietnamese: 'bị dị ứng', pronunciation: 'a-ler-GITS-kee', partOfSpeech: 'adjective', tags: ['health', 'A2', 'unit8'] },
+  { id: 'cs_707', czech: 'pojišťovna', vietnamese: 'bảo hiểm', pronunciation: 'po-YISH-tov-na', partOfSpeech: 'noun', gender: 'feminine', tags: ['health', 'A2', 'unit8'] },
+  { id: 'cs_708', czech: 'záchranná služba', vietnamese: 'xe cấp cứu', pronunciation: 'ZAK-hran-na SLUZH-ba', partOfSpeech: 'phrase', tags: ['health', 'A2', 'unit8'] },
+  { id: 'cs_709', czech: 'recept', vietnamese: 'đơn thuốc', pronunciation: 'RE-tsept', partOfSpeech: 'noun', gender: 'masculine', tags: ['health', 'A2', 'unit8'] },
+  { id: 'cs_710', czech: 'lékárna', vietnamese: 'nhà thuốc', pronunciation: 'LE-kar-na', partOfSpeech: 'noun', gender: 'feminine', tags: ['health', 'A2', 'unit8'] },
+
+  // ========== A2: Giao Thông (cs_801-cs_810) ==========
+  { id: 'cs_801', czech: 'metro', vietnamese: 'tàu điện ngầm', pronunciation: 'ME-tro', partOfSpeech: 'noun', gender: 'neuter', tags: ['transport', 'A2', 'unit9'] },
+  { id: 'cs_802', czech: 'tramvaj', vietnamese: 'xe điện (tram)', pronunciation: 'TRAM-vai', partOfSpeech: 'noun', gender: 'feminine', tags: ['transport', 'A2', 'unit9'] },
+  { id: 'cs_803', czech: 'autobus', vietnamese: 'xe buýt', pronunciation: 'AU-to-bus', partOfSpeech: 'noun', gender: 'masculine', tags: ['transport', 'A2', 'unit9'] },
+  { id: 'cs_804', czech: 'vlak', vietnamese: 'tàu hỏa', pronunciation: 'vlak', partOfSpeech: 'noun', gender: 'masculine', tags: ['transport', 'A2', 'unit9'] },
+  { id: 'cs_805', czech: 'letiště', vietnamese: 'sân bay', pronunciation: 'LE-tish-tye', partOfSpeech: 'noun', gender: 'neuter', tags: ['transport', 'A2', 'unit9'] },
+  { id: 'cs_806', czech: 'jízdenka', vietnamese: 'vé xe', pronunciation: 'YEEZ-den-ka', partOfSpeech: 'noun', gender: 'feminine', tags: ['transport', 'A2', 'unit9'] },
+  { id: 'cs_807', czech: 'zastávka', vietnamese: 'bến xe / trạm dừng', pronunciation: 'ZAS-tav-ka', partOfSpeech: 'noun', gender: 'feminine', tags: ['transport', 'A2', 'unit9'] },
+  { id: 'cs_808', czech: 'kde je...?', vietnamese: '... ở đâu?', pronunciation: 'kde ye', partOfSpeech: 'phrase', tags: ['transport', 'A2', 'unit9'] },
+  { id: 'cs_809', czech: 'přestoupit', vietnamese: 'chuyển xe', pronunciation: 'przhe-STOU-pit', partOfSpeech: 'verb', tags: ['transport', 'A2', 'unit9'] },
+  { id: 'cs_810', czech: 'taxi', vietnamese: 'taxi', pronunciation: 'TAK-si', partOfSpeech: 'noun', gender: 'neuter', tags: ['transport', 'A2', 'unit9'] },
+
+  // ========== B1: Công Việc (cs_1001-cs_1010) ==========
+  { id: 'cs_1001', czech: 'práce', vietnamese: 'công việc', pronunciation: 'PRA-tse', partOfSpeech: 'noun', gender: 'feminine', tags: ['work', 'B1', 'unit11'] },
+  { id: 'cs_1002', czech: 'zaměstnavatel', vietnamese: 'chủ sử dụng lao động', pronunciation: 'za-mnyes-TNA-va-tel', partOfSpeech: 'noun', gender: 'masculine', tags: ['work', 'B1', 'unit11'] },
+  { id: 'cs_1003', czech: 'plat', vietnamese: 'lương', pronunciation: 'plat', partOfSpeech: 'noun', gender: 'masculine', tags: ['work', 'B1', 'unit11'] },
+  { id: 'cs_1004', czech: 'pohovor', vietnamese: 'phỏng vấn', pronunciation: 'PO-ho-vor', partOfSpeech: 'noun', gender: 'masculine', tags: ['work', 'B1', 'unit11'] },
+  { id: 'cs_1005', czech: 'životopis', vietnamese: 'CV / sơ yếu lý lịch', pronunciation: 'ZHI-vo-to-pis', partOfSpeech: 'noun', gender: 'masculine', tags: ['work', 'B1', 'unit11'] },
+  { id: 'cs_1006', czech: 'kancelář', vietnamese: 'văn phòng', pronunciation: 'KAN-tse-larsh', partOfSpeech: 'noun', gender: 'feminine', tags: ['work', 'B1', 'unit11'] },
+  { id: 'cs_1007', czech: 'schůzka', vietnamese: 'cuộc họp', pronunciation: 'SKHOOZ-ka', partOfSpeech: 'noun', gender: 'feminine', tags: ['work', 'B1', 'unit11'] },
+  { id: 'cs_1008', czech: 'dovolená', vietnamese: 'kỳ nghỉ phép', pronunciation: 'do-vo-LE-na', partOfSpeech: 'noun', gender: 'feminine', tags: ['work', 'B1', 'unit11'] },
+  { id: 'cs_1009', czech: 'kolega', vietnamese: 'đồng nghiệp', pronunciation: 'KO-le-ga', partOfSpeech: 'noun', gender: 'masculine', tags: ['work', 'B1', 'unit11'] },
+  { id: 'cs_1010', czech: 'firma', vietnamese: 'công ty', pronunciation: 'FIR-ma', partOfSpeech: 'noun', gender: 'feminine', tags: ['work', 'B1', 'unit11'] },
+
+  // ========== B1: Du Lịch (cs_1101-cs_1110) ==========
+  { id: 'cs_1101', czech: 'hotel', vietnamese: 'khách sạn', pronunciation: 'HO-tel', partOfSpeech: 'noun', gender: 'masculine', tags: ['travel', 'B1', 'unit12'] },
+  { id: 'cs_1102', czech: 'rezervace', vietnamese: 'đặt phòng / đặt chỗ', pronunciation: 're-zer-VA-tse', partOfSpeech: 'noun', gender: 'feminine', tags: ['travel', 'B1', 'unit12'] },
+  { id: 'cs_1103', czech: 'pas', vietnamese: 'hộ chiếu', pronunciation: 'pas', partOfSpeech: 'noun', gender: 'masculine', tags: ['travel', 'B1', 'unit12'] },
+  { id: 'cs_1104', czech: 'víza', vietnamese: 'thị thực', pronunciation: 'VEE-za', partOfSpeech: 'noun', gender: 'neuter', tags: ['travel', 'B1', 'unit12'] },
+  { id: 'cs_1105', czech: 'průvodce', vietnamese: 'hướng dẫn viên', pronunciation: 'PROO-vod-tse', partOfSpeech: 'noun', gender: 'masculine', tags: ['travel', 'B1', 'unit12'] },
+  { id: 'cs_1106', czech: 'památka', vietnamese: 'điểm tham quan', pronunciation: 'PA-mat-ka', partOfSpeech: 'noun', gender: 'feminine', tags: ['travel', 'B1', 'unit12'] },
+  { id: 'cs_1107', czech: 'mapa', vietnamese: 'bản đồ', pronunciation: 'MA-pa', partOfSpeech: 'noun', gender: 'feminine', tags: ['travel', 'B1', 'unit12'] },
+  { id: 'cs_1108', czech: 'výlet', vietnamese: 'chuyến đi', pronunciation: 'VEE-let', partOfSpeech: 'noun', gender: 'masculine', tags: ['travel', 'B1', 'unit12'] },
+  { id: 'cs_1109', czech: 'hranice', vietnamese: 'biên giới', pronunciation: 'HRA-ni-tse', partOfSpeech: 'noun', gender: 'feminine', tags: ['travel', 'B1', 'unit12'] },
+  { id: 'cs_1110', czech: 'směnárna', vietnamese: 'quầy đổi tiền', pronunciation: 'SMNYE-nar-na', partOfSpeech: 'noun', gender: 'feminine', tags: ['travel', 'B1', 'unit12'] },
+
   // ========== Unit 2: Số Đếm 1–10 ==========
   {
     id: 'cs_101',

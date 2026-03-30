@@ -6,9 +6,13 @@ import CourseMapScreen from './screens/CourseMapScreen'
 import LessonScreen from './screens/LessonScreen'
 import ReviewScreen from './screens/ReviewScreen'
 import ProfileScreen from './screens/ProfileScreen'
+import PlacementTestScreen from './screens/PlacementTestScreen'
+import MediaFeedScreen from './screens/MediaFeedScreen'
+import CommunityScreen from './screens/CommunityScreen'
+import ClassroomScreen from './screens/ClassroomScreen'
 import AppShell from './components/layout/AppShell'
 
-export type Screen = 'home' | 'course' | 'profile' | 'lesson' | 'review'
+export type Screen = 'home' | 'course' | 'profile' | 'lesson' | 'review' | 'media' | 'community' | 'classroom'
 
 interface NavCtx {
   screen: Screen
@@ -28,13 +32,22 @@ export function useNav() {
 
 export default function App() {
   const onboardingDone = useUserStore((s) => s.onboardingDone)
+  const placementDone = useUserStore((s) => s.placementDone)
   const checkStreak = useUserStore((s) => s.checkStreak)
   const [screen, setScreen] = useState<Screen>('home')
   const [lessonId, setLessonId] = useState<string | null>(null)
+  const [showPlacement, setShowPlacement] = useState(false)
 
   useEffect(() => {
     checkStreak()
   }, [])
+
+  // After onboarding done, check if placement is needed
+  useEffect(() => {
+    if (onboardingDone && !placementDone) {
+      setShowPlacement(true)
+    }
+  }, [onboardingDone, placementDone])
 
   function navigate(s: Screen, lid?: string) {
     setLessonId(lid ?? null)
@@ -46,7 +59,17 @@ export default function App() {
     return <OnboardingScreen />
   }
 
+  if (showPlacement) {
+    return (
+      <div className="min-h-screen bg-babbel-bg flex flex-col max-w-md mx-auto shadow-2xl relative">
+        <PlacementTestScreen onDone={() => setShowPlacement(false)} />
+      </div>
+    )
+  }
+
   const isActivity = screen === 'lesson' || screen === 'review'
+
+  const shellScreens: Screen[] = ['home', 'course', 'media', 'community', 'profile']
 
   return (
     <NavContext.Provider value={{ screen, lessonId, navigate }}>
@@ -62,9 +85,12 @@ export default function App() {
             <div className="flex-1 pb-20">
               {screen === 'home' && <HomeScreen />}
               {screen === 'course' && <CourseMapScreen />}
+              {screen === 'media' && <MediaFeedScreen />}
+              {screen === 'community' && <CommunityScreen />}
+              {screen === 'classroom' && <ClassroomScreen />}
               {screen === 'profile' && <ProfileScreen />}
             </div>
-            <AppShell />
+            {shellScreens.includes(screen) && <AppShell />}
           </>
         )}
       </div>

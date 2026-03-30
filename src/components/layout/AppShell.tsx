@@ -1,4 +1,4 @@
-import { BookOpen, Dumbbell, BarChart2 } from 'lucide-react'
+import { BookOpen, Map, Play, Users, User } from 'lucide-react'
 import { useNav, type Screen } from '../../App'
 import { useReviewStore } from '../../store/reviewStore'
 
@@ -7,9 +7,11 @@ const tabs: {
   label: string
   Icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>
 }[] = [
-  { id: 'home',    label: 'Học',        Icon: BookOpen  },
-  { id: 'course',  label: 'Luyện tập',  Icon: Dumbbell  },
-  { id: 'profile', label: 'Tiến trình', Icon: BarChart2 },
+  { id: 'home',      label: 'Học',       Icon: BookOpen },
+  { id: 'course',    label: 'Bài học',   Icon: Map      },
+  { id: 'media',     label: 'Nội dung',  Icon: Play     },
+  { id: 'community', label: 'Cộng đồng', Icon: Users    },
+  { id: 'profile',   label: 'Hồ sơ',    Icon: User     },
 ]
 
 export default function AppShell() {
@@ -30,17 +32,17 @@ export default function AppShell() {
           >
             <div className="relative">
               <Icon
-                size={24}
+                size={22}
                 strokeWidth={active ? 2.5 : 1.8}
-                className={active ? 'text-babbel-text' : 'text-gray-400'}
+                className={active ? 'text-babbel-orange' : 'text-gray-400'}
               />
               {hasDot && (
                 <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-babbel-orange border-2 border-white" />
               )}
             </div>
             <span
-              className={`text-[11px] ${
-                active ? 'font-bold text-babbel-text' : 'font-medium text-gray-400'
+              className={`text-[10px] leading-tight ${
+                active ? 'font-bold text-babbel-orange' : 'font-medium text-gray-400'
               }`}
             >
               {label}

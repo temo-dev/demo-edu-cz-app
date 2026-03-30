@@ -17,11 +17,19 @@ export type ExerciseType =
   | 'matching'
   | 'listening'
   | 'speaking'
+  | 'grammar'
+  | 'reading'
+  | 'writing'
+  | 'video'
+
+export type CEFRLevel = 'A1' | 'A2' | 'B1'
 
 export interface ExerciseDef {
   type: ExerciseType
   vocabIds: string[]
-  extra?: Record<string, unknown>
+  // For grammar/reading/writing/video: pass full exercise data here
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data?: any
 }
 
 export interface Lesson {

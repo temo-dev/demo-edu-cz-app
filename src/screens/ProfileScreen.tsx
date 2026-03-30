@@ -1,9 +1,11 @@
-import { Flame, Star, BookOpen, RotateCcw, Trophy, ChevronRight } from 'lucide-react'
+import { Flame, Star, BookOpen, RotateCcw, Trophy, ChevronRight, Bell, BellOff } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { useUserStore } from '../store/userStore'
 import { useProgressStore } from '../store/progressStore'
 import { useReviewStore } from '../store/reviewStore'
 import { course } from '../data/curriculum'
+import { useNav } from '../App'
 
 const BADGES = [
   { id: 'first_lesson', label: 'Bài đầu tiên', emoji: '🌟', lessonsRequired: 1 },
@@ -15,7 +17,20 @@ const BADGES = [
 ]
 
 export default function ProfileScreen() {
-  const { name, xp, streak, dailyGoalXP, todayXP } = useUserStore()
+  const { name, xp, streak, dailyGoalXP, todayXP, cefrLevel, notificationsEnabled, notificationHour, setNotifications } = useUserStore()
+  const { navigate } = useNav()
+  const [notifHour, setNotifHour] = useState(notificationHour)
+
+  async function handleToggleNotif() {
+    if (!notificationsEnabled) {
+      const perm = await Notification.requestPermission()
+      if (perm === 'granted') {
+        setNotifications(true, notifHour)
+      }
+    } else {
+      setNotifications(false)
+    }
+  }
   const { completedLessonIds, lessonStars } = useProgressStore()
   const totalVocab = useReviewStore((s) => Object.keys(s.records).length)
   const level = Math.floor(xp / 500) + 1
@@ -56,6 +71,9 @@ export default function ProfileScreen() {
           <div className="flex-1">
             <h1 className="text-babbel-text text-xl font-extrabold">{name}</h1>
             <p className="text-babbel-muted text-sm">Cấp độ {level} · {xpToNext} XP đến cấp tiếp</p>
+            <span className="inline-block mt-1 text-xs font-bold px-2 py-0.5 rounded-full bg-orange-100 text-babbel-orange">
+              Trình độ {cefrLevel}
+            </span>
           </div>
         </div>
 
@@ -143,6 +161,55 @@ export default function ProfileScreen() {
             </p>
           </div>
         )}
+
+        {/* Notifications */}
+        <div className="bg-white rounded-3xl border border-babbel-border p-5">
+          <div className="flex items-center gap-2 mb-4">
+            <Bell size={18} className="text-babbel-orange" />
+            <h2 className="text-babbel-text font-extrabold text-base">Nhắc nhở học tập</h2>
+          </div>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-sm text-gray-600">Thông báo hằng ngày</p>
+            <button
+              onClick={handleToggleNotif}
+              className={`w-12 h-6 rounded-full relative transition-colors ${notificationsEnabled ? 'bg-babbel-orange' : 'bg-gray-200'}`}
+            >
+              <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-all ${notificationsEnabled ? 'left-7' : 'left-1'}`} />
+            </button>
+          </div>
+          {notificationsEnabled && (
+            <div className="flex items-center gap-3">
+              <BellOff size={14} className="text-gray-400" />
+              <p className="text-xs text-gray-500 flex-1">Giờ nhắc nhở</p>
+              <select
+                value={notifHour}
+                onChange={(e) => {
+                  const h = Number(e.target.value)
+                  setNotifHour(h)
+                  setNotifications(true, h)
+                }}
+                className="text-sm font-semibold border border-gray-200 rounded-xl px-3 py-1.5 focus:outline-none focus:border-babbel-orange"
+              >
+                {Array.from({ length: 24 }, (_, i) => (
+                  <option key={i} value={i}>{String(i).padStart(2, '0')}:00</option>
+                ))}
+              </select>
+            </div>
+          )}
+        </div>
+
+        {/* Lớp học */}
+        <button
+          onClick={() => navigate('classroom')}
+          className="bg-white rounded-3xl border border-babbel-border p-5 flex items-center gap-3 w-full text-left"
+        >
+          <span className="text-2xl">🏫</span>
+          <div className="flex-1">
+            <p className="font-bold text-gray-800 text-sm">Lớp học nhỏ với giáo viên</p>
+            <p className="text-xs text-gray-400 mt-0.5">Học trực tuyến 1-6 người</p>
+          </div>
+          <ChevronRight size={18} className="text-gray-300" />
+        </button>
 
         {/* Course progress */}
         <div className="bg-white rounded-3xl border border-babbel-border overflow-hidden">
