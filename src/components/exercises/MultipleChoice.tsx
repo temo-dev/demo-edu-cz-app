@@ -33,7 +33,7 @@ export default function MultipleChoice({ question, questionLang, vocabId, option
         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
           {questionLang === 'czech' ? 'Tiếng Séc nghĩa là gì?' : 'Dịch sang tiếng Séc'}
         </p>
-        <p className="text-3xl font-extrabold text-gray-800 text-center">{question}</p>
+        <p className="text-2xl font-extrabold text-gray-800 text-center break-words">{question}</p>
         {questionLang === 'czech' && (
           <button
             onClick={() => speak(question)}
@@ -51,7 +51,7 @@ export default function MultipleChoice({ question, questionLang, vocabId, option
           let style = 'bg-white border-2 border-gray-200 text-gray-800'
           if (selected) {
             if (opt.id === correctId) style = 'bg-brand-green border-2 border-brand-green text-white'
-            else if (opt.id === selected) style = 'bg-red-500 border-2 border-red-500 text-white'
+            else if (opt.id === selected) style = 'bg-brand-red border-2 border-brand-red text-white'
             else style = 'bg-gray-50 border-2 border-gray-100 text-gray-400'
           }
 

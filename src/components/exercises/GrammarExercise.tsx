@@ -87,8 +87,8 @@ export default function GrammarExercise({
         {options.map((opt) => {
           let style = 'bg-white border-2 border-gray-200 text-gray-800'
           if (selected) {
-            if (opt.id === correctId) style = 'bg-green-500 border-2 border-green-500 text-white'
-            else if (opt.id === selected) style = 'bg-red-500 border-2 border-red-500 text-white'
+            if (opt.id === correctId) style = 'bg-brand-green border-2 border-brand-green text-white'
+            else if (opt.id === selected) style = 'bg-brand-red border-2 border-brand-red text-white'
             else style = 'bg-gray-50 border-2 border-gray-100 text-gray-400'
           }
           return (
@@ -109,11 +109,11 @@ export default function GrammarExercise({
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`rounded-2xl p-4 flex gap-3 ${correct ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}
+          className={`rounded-2xl p-4 flex gap-3 ${correct ? 'bg-green-50 border border-brand-green/30' : 'bg-red-50 border border-brand-red/30'}`}
         >
           {correct
-            ? <CheckCircle size={20} className="text-green-600 flex-shrink-0 mt-0.5" />
-            : <XCircle size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
+            ? <CheckCircle size={20} className="text-brand-green flex-shrink-0 mt-0.5" />
+            : <XCircle size={20} className="text-brand-red flex-shrink-0 mt-0.5" />
           }
           <p className="text-sm text-gray-700">{explanation}</p>
         </motion.div>

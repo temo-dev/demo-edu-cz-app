@@ -48,14 +48,14 @@ export default function FlashCard({ vocabId, onContinue }: Props) {
           </div>
 
           {/* Back */}
-          <div className="backface-hidden rotate-y-180 absolute inset-0 bg-emerald-500 rounded-3xl shadow-xl flex flex-col items-center justify-center gap-2 p-6">
-            <span className="text-xs font-bold text-emerald-200 uppercase tracking-widest">Tiếng Việt</span>
+          <div className="backface-hidden rotate-y-180 absolute inset-0 bg-brand-green rounded-3xl shadow-xl flex flex-col items-center justify-center gap-2 p-6">
+            <span className="text-xs font-bold text-white/60 uppercase tracking-widest">Tiếng Việt</span>
             <p className="text-3xl font-extrabold text-white text-center">{item.vietnamese}</p>
-            <p className="text-emerald-200 text-base font-medium">[{item.pronunciation}]</p>
+            <p className="text-white/70 text-base font-medium">[{item.pronunciation}]</p>
             {item.example && (
-              <div className="bg-emerald-600 rounded-2xl px-4 py-2 mt-2 text-center">
+              <div className="bg-brand-green-dark rounded-2xl px-4 py-2 mt-2 text-center">
                 <p className="text-white text-sm font-semibold">{item.example.czech}</p>
-                <p className="text-emerald-200 text-xs">{item.example.vietnamese}</p>
+                <p className="text-white/70 text-xs">{item.example.vietnamese}</p>
               </div>
             )}
           </div>

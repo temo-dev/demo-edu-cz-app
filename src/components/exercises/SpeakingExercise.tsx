@@ -41,9 +41,14 @@ function levenshtein(a: string, b: string): number {
 function isMatch(heard: string, expected: string): boolean {
   const h = normalize(heard)
   const e = normalize(expected)
+  if (!h || h.length < 1) return false
   if (h === e) return true
-  if (h.includes(e) || e.includes(h)) return true
-  return levenshtein(h, e) <= Math.max(2, Math.floor(e.length * 0.3))
+  // Chỉ cho phép heard chứa expected (người dùng nói thêm từ thừa),
+  // expected phải đủ dài (≥3) để tránh false positive với âm ngắn
+  if (h.includes(e) && e.length >= 3) return true
+  // Levenshtein chặt: từ ≤4 ký tự → max 1 lỗi; từ dài hơn → max 20%
+  const maxDist = e.length <= 4 ? 1 : Math.floor(e.length * 0.2)
+  return levenshtein(h, e) <= maxDist
 }
 
 // ─── Char-level diff for highlighting ────────────────────────────────────────
@@ -125,7 +130,10 @@ export default function SpeakingExercise({ prompt, answer, pronunciation, onAnsw
     setStatus('listening')
     setHeard('')
 
+    let resultFired = false
+
     rec.onresult = (e) => {
+      resultFired = true
       setStatus('processing')
       const results = Array.from(e.results[0]).map((r) => r.transcript)
       const matched = results.find((r) => isMatch(r, answer))
@@ -139,8 +147,8 @@ export default function SpeakingExercise({ prompt, answer, pronunciation, onAnsw
       else speak(answer) // play correct answer on wrong
     }
 
-    rec.onerror = () => setStatus('idle')
-    rec.onend = () => { /* handled by onresult */ }
+    rec.onerror = () => { resultFired = true; setStatus('idle') }
+    rec.onend = () => { if (!resultFired) setStatus('idle') }
     rec.start()
   }
 

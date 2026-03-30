@@ -97,7 +97,7 @@ export default function MatchingPairs({ pairs, onComplete }: Props) {
                   <motion.div
                     initial={{ opacity: 1 }}
                     animate={{ opacity: 0.3 }}
-                    className="py-3 px-4 rounded-2xl text-sm font-bold bg-emerald-100 border-2 border-emerald-300 text-emerald-600"
+                    className="py-3 px-4 rounded-2xl text-sm font-bold bg-green-100 border-2 border-brand-green text-brand-green-dark"
                   >
                     {p.czech}
                   </motion.div>
@@ -124,7 +124,7 @@ export default function MatchingPairs({ pairs, onComplete }: Props) {
                       isWrong
                         ? 'bg-red-100 border-red-400 text-red-700'
                         : isSelected
-                        ? 'bg-violet-500 border-violet-500 text-white'
+                        ? 'bg-brand-blue border-brand-blue text-white'
                         : 'bg-white border-gray-200 text-gray-800'
                     }`}
                   >
@@ -134,7 +134,7 @@ export default function MatchingPairs({ pairs, onComplete }: Props) {
                   <motion.div
                     initial={{ opacity: 1 }}
                     animate={{ opacity: 0.3 }}
-                    className="py-3 px-4 rounded-2xl text-sm font-bold bg-emerald-100 border-2 border-emerald-300 text-emerald-600"
+                    className="py-3 px-4 rounded-2xl text-sm font-bold bg-green-100 border-2 border-brand-green text-brand-green-dark"
                   >
                     {p.vietnamese}
                   </motion.div>
@@ -146,7 +146,7 @@ export default function MatchingPairs({ pairs, onComplete }: Props) {
       </div>
 
       {matched.size > 0 && (
-        <p className="text-center text-emerald-600 text-sm font-semibold">
+        <p className="text-center text-brand-green text-sm font-semibold">
           ✅ {matched.size}/{pairs.length} cặp
         </p>
       )}

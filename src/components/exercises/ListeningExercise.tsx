@@ -59,7 +59,7 @@ export default function ListeningExercise({ vocabId, options, correctId, onAnswe
           let style = 'bg-white border-2 border-gray-200 text-gray-800'
           if (selected) {
             if (opt.id === correctId) style = 'bg-brand-green border-2 border-brand-green text-white'
-            else if (opt.id === selected) style = 'bg-red-500 border-2 border-red-500 text-white'
+            else if (opt.id === selected) style = 'bg-brand-red border-2 border-brand-red text-white'
             else style = 'bg-gray-50 border-2 border-gray-100 text-gray-400'
           }
 
