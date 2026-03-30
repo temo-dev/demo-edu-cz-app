@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-slate-100 text-gray-900 font-sans m-0;
+    @apply bg-babbel-bg text-babbel-text font-sans m-0;
     -webkit-tap-highlight-color: transparent;
   }
   #root {
@@ -15,6 +15,9 @@
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
   }
+  /* hide scrollbar on carousels */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
 @layer utilities {

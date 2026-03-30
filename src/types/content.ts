@@ -16,6 +16,7 @@ export type ExerciseType =
   | 'fillBlank'
   | 'matching'
   | 'listening'
+  | 'speaking'
 
 export interface ExerciseDef {
   type: ExerciseType

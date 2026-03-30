@@ -28,6 +28,13 @@ export type Exercise =
       options: Array<{ id: string; text: string }>
       correctId: string
     }
+  | {
+      type: 'speaking'
+      vocabId: string
+      prompt: string      // Vietnamese — what to say
+      answer: string      // Czech — expected speech
+      pronunciation: string
+    }
 
 export interface ExerciseResult {
   exerciseIndex: number

@@ -20,7 +20,7 @@ export default function OnboardingScreen() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-400 to-emerald-600 flex flex-col items-center justify-center p-6 max-w-md mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-babbel-orange to-orange-700 flex flex-col items-center justify-center p-6 max-w-md mx-auto">
       <AnimatePresence mode="wait">
         {step === 0 && (
           <motion.div
@@ -39,7 +39,7 @@ export default function OnboardingScreen() {
             </p>
             <button
               onClick={() => setStep(1)}
-              className="bg-white text-emerald-600 font-bold px-10 py-4 rounded-2xl text-lg shadow-lg active:scale-95 transition-transform"
+              className="bg-white text-babbel-orange font-bold px-10 py-4 rounded-2xl text-lg shadow-lg active:scale-95 transition-transform"
             >
               Bắt đầu nào! →
             </button>
@@ -57,7 +57,7 @@ export default function OnboardingScreen() {
             <h2 className="text-2xl font-extrabold text-white text-center mb-2">
               Bạn tên là gì? 😊
             </h2>
-            <p className="text-emerald-100 text-center mb-6">Để chúng tôi gọi bạn</p>
+            <p className="text-orange-100 text-center mb-6">Để chúng tôi gọi bạn</p>
             <input
               autoFocus
               type="text"
@@ -70,7 +70,7 @@ export default function OnboardingScreen() {
             <button
               disabled={!name.trim()}
               onClick={() => setStep(2)}
-              className="w-full bg-white text-emerald-600 font-bold py-4 rounded-2xl text-lg shadow-lg disabled:opacity-50 active:scale-95 transition-transform"
+              className="w-full bg-white text-babbel-orange font-bold py-4 rounded-2xl text-lg shadow-lg disabled:opacity-50 active:scale-95 transition-transform"
             >
               Tiếp theo →
             </button>
@@ -88,7 +88,7 @@ export default function OnboardingScreen() {
             <h2 className="text-2xl font-extrabold text-white text-center mb-2">
               Mục tiêu học của bạn?
             </h2>
-            <p className="text-emerald-100 text-center mb-6">
+            <p className="text-orange-100 text-center mb-6">
               Xin chào, <span className="font-bold">{name}</span>! 👋
             </p>
             <div className="flex flex-col gap-3 mb-6">
@@ -108,7 +108,7 @@ export default function OnboardingScreen() {
                     <div className="text-sm opacity-80">{g.desc}</div>
                   </div>
                   {g.recommended && (
-                    <span className="bg-brand-yellow text-gray-800 text-xs font-bold px-2 py-0.5 rounded-full">
+                    <span className="bg-white text-babbel-orange text-xs font-bold px-2 py-0.5 rounded-full">
                       Gợi ý
                     </span>
                   )}
@@ -117,7 +117,7 @@ export default function OnboardingScreen() {
             </div>
             <button
               onClick={finish}
-              className="w-full bg-white text-emerald-600 font-bold py-4 rounded-2xl text-lg shadow-lg active:scale-95 transition-transform"
+              className="w-full bg-white text-babbel-orange font-bold py-4 rounded-2xl text-lg shadow-lg active:scale-95 transition-transform"
             >
               Bắt đầu học! 🚀
             </button>

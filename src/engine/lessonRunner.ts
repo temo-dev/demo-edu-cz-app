@@ -81,6 +81,20 @@ export function buildExercises(lesson: Lesson): Exercise[] {
       }
     }
 
+    if (def.type === 'speaking') {
+      for (const id of ids) {
+        const item = vocabMap[id]
+        if (!item) continue
+        exercises.push({
+          type: 'speaking',
+          vocabId: id,
+          prompt: item.vietnamese,
+          answer: item.czech,
+          pronunciation: item.pronunciation,
+        })
+      }
+    }
+
     if (def.type === 'fillBlank') {
       // Simple fill-blank from vocab: "Tiếng Séc của '___ chào' là ___"
       const fillPairs: Array<{ czech: string; answer: string; wordBank: string[] }> = []

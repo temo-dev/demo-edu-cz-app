@@ -1,134 +1,219 @@
-import { Flame, Star, BookOpen, RotateCcw } from 'lucide-react'
+import { useRef } from 'react'
+import { Flame, User, CheckCircle } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { useUserStore } from '../store/userStore'
 import { useProgressStore } from '../store/progressStore'
 import { useReviewStore } from '../store/reviewStore'
 import { useNav } from '../App'
 import { course } from '../data/curriculum'
 
+// Card background colors per unit (warm, Babbel-style)
+const CARD_COLORS = [
+  { bg: 'bg-babbel-cream', text: 'text-babbel-text', sub: 'text-babbel-muted' },
+  { bg: 'bg-violet-100',   text: 'text-violet-900',  sub: 'text-violet-500'  },
+  { bg: 'bg-amber-100',    text: 'text-amber-900',   sub: 'text-amber-600'   },
+  { bg: 'bg-sky-100',      text: 'text-sky-900',     sub: 'text-sky-500'     },
+]
+
 export default function HomeScreen() {
-  const { name, xp, streak, todayXP, dailyGoalXP } = useUserStore()
-  const { lastLessonId, isLessonUnlocked } = useProgressStore()
+  const { name, streak, xp, todayXP, dailyGoalXP } = useUserStore()
+  const { isLessonUnlocked, isLessonComplete } = useProgressStore()
   const dueCount = useReviewStore((s) => s.getDueCount())
   const { navigate } = useNav()
+  const scrollRef = useRef<HTMLDivElement>(null)
 
+  const allLessons = course.units.flatMap((u, ui) =>
+    u.lessons.map((l, li) => ({ ...l, unit: u, unitIndex: ui, lessonIndex: li }))
+  )
   const goalPct = Math.min(1, todayXP / dailyGoalXP)
-  const level = Math.floor(xp / 500) + 1
-
-  // Find next lesson to do
-  const allLessons = course.units.flatMap((u) => u.lessons)
-  const nextLesson = allLessons.find((l) => isLessonUnlocked(l.id) && l.id !== lastLessonId)
-    ?? allLessons.find((l) => isLessonUnlocked(l.id))
 
   return (
-    <div className="bg-white min-h-full">
-      {/* Header */}
-      <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 px-5 pt-12 pb-8">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <p className="text-emerald-100 text-sm font-medium">Xin chào,</p>
-            <h1 className="text-white text-2xl font-extrabold">{name} 👋</h1>
-          </div>
-          <div className="flex items-center gap-2 bg-white/20 px-3 py-2 rounded-xl">
-            <Flame size={20} className="text-orange-300" />
-            <span className="text-white font-bold">{streak}</span>
-          </div>
+    <div className="bg-babbel-bg min-h-full">
+      {/* ── Top bar ── */}
+      <div className="bg-white px-5 pt-12 pb-4 flex items-center justify-between">
+        <div>
+          <p className="text-babbel-muted text-xs font-medium">Chào mừng trở lại,</p>
+          <h1 className="text-babbel-text text-xl font-extrabold leading-tight">
+            {name} 👋
+          </h1>
         </div>
-
-        {/* XP Level badge */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="bg-brand-yellow w-10 h-10 rounded-full flex items-center justify-center font-extrabold text-gray-800 text-sm shadow">
-            {level}
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 bg-orange-50 px-3 py-1.5 rounded-full">
+            <Flame size={16} className="text-babbel-orange" />
+            <span className="text-babbel-orange font-bold text-sm">{streak}</span>
           </div>
-          <div className="flex-1">
-            <div className="flex justify-between text-xs text-emerald-100 mb-1">
-              <span>Cấp độ {level}</span>
-              <span>{xp} XP</span>
-            </div>
-            <div className="h-2 bg-white/30 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-brand-yellow rounded-full transition-all duration-500"
-                style={{ width: `${((xp % 500) / 500) * 100}%` }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Daily Goal */}
-        <div className="bg-white/20 rounded-2xl p-4">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-white font-semibold text-sm">🎯 Mục tiêu hôm nay</span>
-            <span className="text-white text-sm font-bold">{todayXP}/{dailyGoalXP} XP</span>
-          </div>
-          <div className="h-3 bg-white/30 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-brand-yellow rounded-full transition-all duration-700"
-              style={{ width: `${goalPct * 100}%` }}
-            />
-          </div>
-          {goalPct >= 1 && (
-            <p className="text-brand-yellow text-xs font-bold mt-1 text-center">✅ Đạt mục tiêu hôm nay!</p>
-          )}
+          <button
+            onClick={() => navigate('profile')}
+            className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center"
+          >
+            <User size={18} className="text-gray-500" />
+          </button>
         </div>
       </div>
 
-      {/* Action Cards */}
-      <div className="px-5 py-6 flex flex-col gap-4">
-        {/* Continue Learning */}
-        {nextLesson && (
-          <button
-            onClick={() => navigate('lesson', nextLesson.id)}
-            className="w-full bg-brand-green text-white rounded-2xl p-5 flex items-center gap-4 shadow-lg shadow-green-200 active:scale-98 transition-transform"
-          >
-            <div className="bg-white/20 rounded-xl p-3">
-              <BookOpen size={28} className="text-white" />
-            </div>
-            <div className="text-left flex-1">
-              <p className="text-sm text-green-100 font-medium">Tiếp tục học</p>
-              <p className="text-lg font-extrabold">{nextLesson.title}</p>
-              <p className="text-green-100 text-sm">{nextLesson.subtitle}</p>
-            </div>
-            <div className="text-white/80 text-2xl">→</div>
-          </button>
-        )}
-
-        {/* Review */}
-        {dueCount > 0 && (
-          <button
-            onClick={() => navigate('review')}
-            className="w-full bg-brand-blue text-white rounded-2xl p-5 flex items-center gap-4 shadow-lg shadow-blue-200 active:scale-98 transition-transform"
-          >
-            <div className="bg-white/20 rounded-xl p-3">
-              <RotateCcw size={28} className="text-white" />
-            </div>
-            <div className="text-left flex-1">
-              <p className="text-sm text-blue-100 font-medium">Ôn tập</p>
-              <p className="text-lg font-extrabold">Ôn tập hôm nay</p>
-              <p className="text-blue-100 text-sm">{dueCount} từ cần ôn</p>
-            </div>
-            <div className="bg-red-500 text-white text-sm font-bold w-7 h-7 rounded-full flex items-center justify-center">
-              {dueCount}
-            </div>
-          </button>
-        )}
-
-        {/* Stats Row */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="bg-orange-50 rounded-2xl p-4 text-center">
-            <Flame size={24} className="text-orange-500 mx-auto mb-1" />
-            <p className="text-2xl font-extrabold text-orange-600">{streak}</p>
-            <p className="text-xs text-orange-400 font-medium">Ngày liên tiếp</p>
-          </div>
-          <div className="bg-emerald-50 rounded-2xl p-4 text-center">
-            <Star size={24} className="text-emerald-500 mx-auto mb-1" />
-            <p className="text-2xl font-extrabold text-emerald-600">{xp}</p>
-            <p className="text-xs text-emerald-400 font-medium">Tổng XP</p>
-          </div>
-          <div className="bg-violet-50 rounded-2xl p-4 text-center">
-            <BookOpen size={24} className="text-violet-500 mx-auto mb-1" />
-            <p className="text-2xl font-extrabold text-violet-600">{level}</p>
-            <p className="text-xs text-violet-400 font-medium">Cấp độ</p>
-          </div>
+      {/* ── Daily goal bar ── */}
+      <div className="bg-white px-5 pb-4 border-b border-babbel-border">
+        <div className="flex justify-between items-center mb-1.5">
+          <p className="text-xs font-semibold text-babbel-muted">Mục tiêu hôm nay</p>
+          <p className="text-xs font-bold text-babbel-text">{todayXP}/{dailyGoalXP} XP</p>
         </div>
+        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-babbel-orange rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: `${goalPct * 100}%` }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          />
+        </div>
+      </div>
+
+      {/* ── Lesson card carousel ── */}
+      <div className="pt-5 pb-2">
+        <p className="px-5 text-xs font-bold text-babbel-muted uppercase tracking-widest mb-3">
+          Bài học của bạn
+        </p>
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 pb-2 no-scrollbar"
+        >
+          {allLessons.map((lesson, i) => {
+            const unlocked = isLessonUnlocked(lesson.id)
+            const done = isLessonComplete(lesson.id)
+            const color = CARD_COLORS[lesson.unitIndex % CARD_COLORS.length]
+
+            return (
+              <motion.div
+                key={lesson.id}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.06 }}
+                className={`flex-none w-72 snap-start rounded-3xl overflow-hidden ${
+                  color.bg
+                } ${!unlocked ? 'opacity-50' : ''}`}
+              >
+                <button
+                  disabled={!unlocked}
+                  onClick={() => unlocked && navigate('lesson', lesson.id)}
+                  className="w-full text-left p-5 flex flex-col"
+                  style={{ minHeight: 180 }}
+                >
+                  {/* Lesson label */}
+                  <p className={`text-xs font-bold uppercase tracking-widest ${color.sub} mb-2`}>
+                    Bài {i + 1} · {lesson.unit.title}
+                  </p>
+
+                  {/* Title */}
+                  <h2 className={`text-xl font-extrabold leading-tight ${color.text} flex-1`}>
+                    {lesson.title}
+                  </h2>
+                  {lesson.subtitle && (
+                    <p className={`text-sm mt-1 ${color.sub}`}>{lesson.subtitle}</p>
+                  )}
+
+                  {/* Footer row */}
+                  <div className="flex items-end justify-between mt-4">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-3xl">{lesson.unit.icon}</span>
+                      {!done && unlocked && (
+                        <span className={`text-xs font-bold ${color.sub} bg-white/60 px-2 py-0.5 rounded-full`}>
+                          +{lesson.xpReward} XP
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Checkmark button */}
+                    <div
+                      className={`w-11 h-11 rounded-full flex items-center justify-center shadow-md ${
+                        done
+                          ? 'bg-babbel-orange'
+                          : unlocked
+                          ? 'bg-babbel-text'
+                          : 'bg-gray-400'
+                      }`}
+                    >
+                      {done ? (
+                        <CheckCircle size={22} className="text-white" strokeWidth={2.5} />
+                      ) : (
+                        <span className="text-white text-lg font-extrabold">→</span>
+                      )}
+                    </div>
+                  </div>
+                </button>
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* ── More for you ── */}
+      <div className="px-5 pt-4 pb-2">
+        <p className="text-xs font-bold text-babbel-muted uppercase tracking-widest mb-3">
+          Dành cho bạn
+        </p>
+        <div className="flex flex-col gap-3">
+          {/* Review card */}
+          {dueCount > 0 && (
+            <button
+              onClick={() => navigate('review')}
+              className="w-full bg-white rounded-2xl border border-babbel-border flex items-center gap-4 p-4 active:bg-gray-50 transition-colors"
+            >
+              <div className="flex-1 text-left">
+                <p className="text-babbel-muted text-xs font-medium">Ôn tập từ vựng</p>
+                <p className="text-babbel-text font-extrabold text-base">Ôn tập ngay</p>
+              </div>
+              <div className="w-16 h-16 rounded-2xl bg-amber-100 flex items-center justify-center text-3xl flex-none">
+                🗂️
+              </div>
+              <div className="absolute right-10 -top-1 bg-babbel-orange text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                {dueCount}
+              </div>
+            </button>
+          )}
+
+          {/* XP stats card */}
+          <button
+            onClick={() => navigate('profile')}
+            className="w-full bg-white rounded-2xl border border-babbel-border flex items-center gap-4 p-4 active:bg-gray-50 transition-colors"
+          >
+            <div className="flex-1 text-left">
+              <p className="text-babbel-muted text-xs font-medium">Khám phá tiến trình</p>
+              <p className="text-babbel-text font-extrabold text-base">Xem thống kê</p>
+            </div>
+            <div className="w-16 h-16 rounded-2xl bg-sky-100 flex items-center justify-center text-3xl flex-none">
+              🎈
+            </div>
+          </button>
+        </div>
+      </div>
+
+      {/* ── Topics section ── */}
+      <div className="px-5 pt-4 pb-6">
+        <p className="text-babbel-text font-extrabold text-lg text-center mb-4">
+          Khám phá bài học theo chủ đề
+        </p>
+        <div className="grid grid-cols-2 gap-3">
+          {course.units.map((unit) => (
+            <button
+              key={unit.id}
+              onClick={() => navigate('course')}
+              className="bg-white rounded-2xl border border-babbel-border p-4 text-left active:bg-gray-50"
+            >
+              <span className="text-3xl block mb-2">{unit.icon}</span>
+              <p className="text-babbel-text font-bold text-sm leading-tight">{unit.title}</p>
+              <p className="text-babbel-muted text-xs mt-0.5">{unit.subtitle}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Bottom CTA ── */}
+      <div className="px-5 pb-8">
+        <button className="w-full bg-babbel-orange text-white font-extrabold py-4 rounded-2xl text-base flex items-center justify-between px-6 shadow-lg shadow-orange-200">
+          <span>Mở khóa tất cả bài học 🇨🇿</span>
+          <span className="bg-white text-babbel-orange text-xs font-extrabold px-3 py-1 rounded-full">
+            {xp} XP
+          </span>
+        </button>
       </div>
     </div>
   )

@@ -47,6 +47,15 @@ export const course: Course = {
             { type: 'fillBlank', vocabIds: ['cs_001', 'cs_004', 'cs_005', 'cs_006', 'cs_007'] },
           ],
         },
+        {
+          id: 'u1l4',
+          title: 'Luyện Nói',
+          subtitle: 'Phát âm tiếng Séc đúng chuẩn',
+          xpReward: 20,
+          exercises: [
+            { type: 'speaking', vocabIds: ['cs_001', 'cs_002', 'cs_003', 'cs_004', 'cs_005', 'cs_006', 'cs_007'] },
+          ],
+        },
       ],
     },
     {
@@ -89,6 +98,15 @@ export const course: Course = {
             { type: 'listening', vocabIds: ['cs_101', 'cs_102', 'cs_103', 'cs_104', 'cs_105'] },
             { type: 'listening', vocabIds: ['cs_106', 'cs_107', 'cs_108', 'cs_109', 'cs_110'] },
             { type: 'matching', vocabIds: ['cs_101', 'cs_103', 'cs_105', 'cs_107', 'cs_109', 'cs_110'] },
+          ],
+        },
+        {
+          id: 'u2l4',
+          title: 'Luyện Nói Số',
+          subtitle: 'Đọc số đếm tiếng Séc',
+          xpReward: 20,
+          exercises: [
+            { type: 'speaking', vocabIds: ['cs_101', 'cs_102', 'cs_103', 'cs_104', 'cs_105', 'cs_106', 'cs_107', 'cs_108', 'cs_109', 'cs_110'] },
           ],
         },
       ],

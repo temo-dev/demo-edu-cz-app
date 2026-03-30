@@ -12,6 +12,7 @@ import MultipleChoice from '../components/exercises/MultipleChoice'
 import MatchingPairs from '../components/exercises/MatchingPairs'
 import FillInTheBlank from '../components/exercises/FillInTheBlank'
 import ListeningExercise from '../components/exercises/ListeningExercise'
+import SpeakingExercise from '../components/exercises/SpeakingExercise'
 
 interface Props {
   lessonId: string
@@ -129,6 +130,16 @@ export default function LessonScreen({ lessonId }: Props) {
                 vocabId={currentExercise.vocabId}
                 options={currentExercise.options}
                 correctId={currentExercise.correctId}
+                onAnswer={submitAnswer}
+              />
+            )}
+
+            {currentExercise?.type === 'speaking' && (
+              <SpeakingExercise
+                vocabId={currentExercise.vocabId}
+                prompt={currentExercise.prompt}
+                answer={currentExercise.answer}
+                pronunciation={currentExercise.pronunciation}
                 onAnswer={submitAnswer}
               />
             )}

@@ -50,7 +50,7 @@ export default function App() {
 
   return (
     <NavContext.Provider value={{ screen, lessonId, navigate }}>
-      <div className="min-h-screen bg-slate-100 flex flex-col max-w-md mx-auto shadow-2xl relative">
+      <div className="min-h-screen bg-babbel-bg flex flex-col max-w-md mx-auto shadow-2xl relative">
         {isActivity ? (
           screen === 'lesson' && lessonId ? (
             <LessonScreen lessonId={lessonId} />
